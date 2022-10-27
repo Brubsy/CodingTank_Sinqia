@@ -1,3 +1,3 @@
 # CodingTank_Sinqia
 
-Project assigned at the Coding Tank phase
+Project assigned at Coding Tank phase of Dev_Makers program from Adatech.
