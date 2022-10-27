@@ -12,9 +12,7 @@ O código da aplicação deve estar no GITHUB e a entrega será feita pelo link 
 
 Média harmônica: https://pt.wikipedia.org/wiki/M%C3%A9dia_harm%C3%B4nica */
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -24,15 +22,11 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int i = 0;
-        int totalNumbers = 0;
+        int totalNumbers;
 
-        ArrayList<Double> listOfNumbers = new ArrayList<Double>();
-
-        boolean notNumber = true;
+        ArrayList<Double> listOfNumbers = new ArrayList<>();
 
         double userNumber;
-        double[] arrayOfNumbers;
-
         double arithmeticMean;
         double harmonicMean;
 
@@ -57,10 +51,16 @@ public class Main {
 
         while (i < totalNumbers) {
             System.out.println("Digite os números a entrarem no cálculo:");
-            userNumber = sc.nextDouble();
-            //arrayOfNumbers[i] = userNumber;
-            listOfNumbers.add(userNumber);
 
+            try {
+                userNumber = sc.nextDouble();
+            } catch (InputMismatchException e){
+                System.err.println("Operação inválida. Digite um número:");
+                sc.nextLine();
+                userNumber = sc.nextDouble();
+            }
+
+            listOfNumbers.add(userNumber);
             arithmeticSum += userNumber;
             harmonicSum += 1/userNumber;
 
