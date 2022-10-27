@@ -66,12 +66,12 @@ public class Main {
 
             if ((chosenMean.equalsIgnoreCase("ARITMETICA")) || (chosenMean.equalsIgnoreCase("ARITMÉTICA"))) {
                 arithmeticMean = arithmeticSum / totalNumbers;
-                System.out.println("Seus números :" + listOfNumbers + ".\n" + "A média escolhida foi a aritmética.\nResultado: " + arithmeticMean + ".");
+                System.out.println("Seus números :" + listOfNumbers + ".\n" + "A média escolhida foi a aritmética.\nResultado da média aritmética: " + arithmeticMean + ".");
                 notMean = false;
 
             } else if ((chosenMean.equalsIgnoreCase("HARMONICA")) || (chosenMean.equalsIgnoreCase("HARMÔNICA"))) {
                 harmonicMean = totalNumbers / harmonicSum;
-                System.out.println("Seus números :" + listOfNumbers + ".\n" + "A média escolhida foi a harmônica.\nResultado: " + harmonicMean + ".");
+                System.out.println("Seus números :" + listOfNumbers + ".\n" + "A média escolhida foi a harmônica.\nResultado da média harmônica: " + harmonicMean + ".");
                 notMean = false;
 
             } else {
