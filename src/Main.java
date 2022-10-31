@@ -15,12 +15,13 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        int i = 0;
-        int totalNumbers;
-
         ArrayList<Double> listOfNumbers = new ArrayList<>();
 
-        boolean notMean = true;
+        int totalNumbers = 0;
+
+        boolean isNotAmount = true;
+        boolean typeNumbers = true;
+        boolean isNotMean = true;
 
         double userNumber;
         double arithmeticMean;
@@ -31,51 +32,75 @@ public class Main {
         System.out.println("Calculadora de média aritmética e harmônica.");
         System.out.print("Digite a quantidade de números de que você quer calcular a média: ");
 
-        try {
-            totalNumbers = sc.nextInt();
+        while (isNotAmount) {
+            try {
+                totalNumbers = sc.nextInt();
 
-        } catch (InputMismatchException e){
-            System.err.println("Operação inválida. Digite um número inteiro:");
-            sc.nextLine();
-            totalNumbers = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.err.println("Operação inválida. Digite um número inteiro:");
+                sc.nextLine();
+                continue;
+            }
+
+            if (totalNumbers > 0) {
+                isNotAmount = false;
+
+            } else {
+                System.err.println("Quantidade inválida. Digite um número inteiro positivo maior que 0:");
+                sc.nextLine();
+            }
         }
 
-        while (i < totalNumbers) {
-            System.out.println("Digite os números a entrarem no cálculo:");
-
+        while (typeNumbers) {
             try {
+                System.out.println("Digite os números a entrarem no cálculo:");
                 userNumber = sc.nextDouble();
 
-            } catch (InputMismatchException e){
-                System.err.println("Operação inválida. Digite um número:");
-                sc.nextLine();
-                userNumber = sc.nextDouble();
+            } catch(InputMismatchException e) {
+                    System.err.println("Operação inválida.");
+                    sc.nextLine();
+                    continue;
             }
 
             listOfNumbers.add(userNumber);
             arithmeticSum += userNumber;
-            harmonicSum += 1/userNumber;
+            harmonicSum += 1 / userNumber;
 
-            i++;
+            if (listOfNumbers.size() == totalNumbers) {
+                typeNumbers = false;
+            }
         }
 
-        System.out.println("Qual das médias você quer calcular? Digite ARITMETICA ou HARMONICA.");
+    System.out.println("Qual das médias você quer calcular? Digite ARITMETICA ou HARMONICA:");
 
-        while (notMean) {
+        while (isNotMean) {
             String chosenMean = sc.next();
 
             if ((chosenMean.equalsIgnoreCase("ARITMETICA")) || (chosenMean.equalsIgnoreCase("ARITMÉTICA"))) {
                 arithmeticMean = arithmeticSum / totalNumbers;
-                System.out.println("Seus números :" + listOfNumbers + ".\n" + "A média escolhida foi a aritmética.\nResultado da média aritmética: " + arithmeticMean + ".");
-                notMean = false;
+                System.out.println("Seus números: " + listOfNumbers + ".");
+                System.out.println("A média escolhida foi a aritmética.");
+                System.out.println("Resultado da média aritmética: " + arithmeticMean + ".");
+
+                isNotMean = false;
 
             } else if ((chosenMean.equalsIgnoreCase("HARMONICA")) || (chosenMean.equalsIgnoreCase("HARMÔNICA"))) {
-                harmonicMean = totalNumbers / harmonicSum;
-                System.out.println("Seus números :" + listOfNumbers + ".\n" + "A média escolhida foi a harmônica.\nResultado da média harmônica: " + harmonicMean + ".");
-                notMean = false;
+                if (listOfNumbers.contains(0.0)) {
+                    System.err.println("A média harmônica é feita dividindo a quantidade de elementos no conjunto pela soma do inverso dos elementos do conjunto. Um dos números digitados foi 0 e seu inverso é indefinido. Nenhum número pode ser dividido por zero.");
+                    System.out.println("Digite ARITMETICA:");
+                    sc.nextLine();
+
+                } else {
+                    harmonicMean = totalNumbers / harmonicSum;
+                    System.out.println("Seus números: " + listOfNumbers + ".");
+                    System.out.println("A média escolhida foi a harmônica.");
+                    System.out.println("Resultado da média aritmética: " + harmonicMean + ".");
+
+                    isNotMean = false;
+                }
 
             } else {
-                System.err.println("Operação inválida. Digite ARITMETICA ou HARMONICA.");
+                System.err.println("Operação inválida. Digite ARITMETICA ou HARMONICA:");
                 sc.nextLine();
             }
         }
